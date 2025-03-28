@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUNA - Conectamos oportunidades en movilidad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6D28D9;
+            --primary-light: #EDE9FE;
+            --primary-dark: #5B21B6;
+            --secondary: #DB2777;
+            --dark: #1F2937;
+            --darker: #111827;
+            --light: #FFFFFF;
+            --light-gray: #F9FAFB;
+            --medium-gray: #E5E7EB;
+            --dark-gray: #6B7280;
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--light);
+            padding: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-light), var(--light));
+            padding: 4rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(109, 40, 217, 0.03)" d="M0,100 L100,0 L100,100 Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--dark);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-weight: 500;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--light);
+            box-shadow: 0 4px 6px rgba(109, 40, 217, 0.1);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(109, 40, 217, 0.2);
+        }
+        
+        .btn-secondary {
+            background: var(--light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(109, 40, 217, 0.1);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--darker);
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            color: var(--dark-gray);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.125rem;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .step-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--medium-gray);
+            text-align: center;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            border: 2px solid var(--primary);
+        }
+        
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--darker);
+        }
+        
+        .step-description {
+            color: var(--dark-gray);
+            font-size: 1rem;
+        }
+        
+        /* Payment System */
+        .payment-system {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem auto;
+            text-align: center;
+            max-width: 800px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .payment-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: var(--primary-light);
+            padding: 4rem 1rem;
+            margin: 4rem 0;
+            border-radius: 16px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .benefit-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--medium-gray);
+            text-align: center;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .benefit-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--darker);
+        }
+        
+        .benefit-description {
+            color: var(--dark-gray);
+            font-size: 1rem;
+        }
+        
+        /* Cities Section */
+        .cities {
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .cities-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .cities-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        
+        .city-pill {
+            background: var(--light);
+            border: 1px solid var(--medium-gray);
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            transition: all 0.2s;
+        }
+        
+        .city-pill:hover {
+            background: var(--primary);
+            color: var(--light);
+            border-color: var(--primary);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+        
+        .testimonial-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--medium-gray);
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+            font-size: 3rem;
+            color: var(--primary-light);
+            line-height: 1;
+            font-family: serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .author-info {
+            text-align: left;
+        }
+        
+        .author-name {
+            font-weight: 700;
+            color: var(--darker);
+        }
+        
+        .author-role {
+            color: var(--dark-gray);
+            font-size: 0.875rem;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--medium-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        /* Registration Sections */
+        .registration-section {
+            display: none;
+            background: var(--light);
+            padding: 4rem 1rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .registration-section.active {
+            display: block;
+        }
+        
+        .registration-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .registration-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .registration-feature {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 0.25rem;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: var(--darker);
+        }
+        
+        .feature-content p {
+            color: var(--dark-gray);
+            font-size: 0.9375rem;
+        }
+        
+        .registration-form {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--darker);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--darker);
+            font-size: 0.9375rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 0.9375rem;
+            transition: all 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+        }
+        
+        .form-submit {
+            width: 100%;
+            padding: 0.875rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .form-submit:hover {
+            background: var(--primary-dark);
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            padding: 4rem 1rem;
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255, 255, 255, 0.05)" d="M0,100 L100,0 L100,100 Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.5;
+        }
+        
+        .final-cta .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .final-cta .section-title {
+            color: var(--light);
+            background: none;
+            -webkit-text-fill-color: var(--light);
+        }
+        
+        .final-cta .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: var(--light);
+            padding: 4rem 1rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--light);
+        }
+        
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+        
+        .footer-links-title {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            font-size: 1.125rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-link a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 0.9375rem;
+            display: inline-block;
+            padding: 0.25rem 0;
+        }
+        
+        .footer-link a:hover {
+            color: var(--light);
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--light);
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+            
+            .registration-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🚗</span>
+                <span>JUNA</span>
+            </div>
+            <nav class="nav-links" id="navLinks">
+                <a href="#como-funciona" class="nav-link">Cómo funciona</a>
+                <a href="#beneficios" class="nav-link">Beneficios</a>
+                <a href="#ciudades" class="nav-link">Ciudades</a>
+                <a href="#testimonios" class="nav-link">Testimonios</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title animate">Conectamos Oportunidades</h1>
+            <p class="hero-subtitle animate delay-1">Encuentra tu match perfecto y comienza a generar ingresos sin complicaciones</p>
+            <div class="cta-buttons">
+                <a href="#registro-conductoras" class="btn btn-primary animate delay-2" id="quieroConducirBtn">Quiero conducir</a>
+                <a href="#registro-propietarios" class="btn btn-secondary animate delay-2" id="tengoAutoBtn">Tengo un auto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="container" id="como-funciona">
+        <h2 class="section-title">Cómo funciona JUNA</h2>
+        <p class="section-subtitle">Un proceso simple para crear conexiones exitosas</p>
+        
+        <div class="how-it-works">
+            <div class="step-card animate">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Registro gratuito</h3>
+                <p class="step-description">Crea tu perfil con información básica y documentos. Nuestro equipo verifica todo en menos de 24 horas.</p>
+            </div>
+            
+            <div class="step-card animate delay-1">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Encuentra tu match</h3>
+                <p class="step-description">Explora perfiles verificados de conductoras o autos disponibles en tu zona con nuestras herramientas inteligentes.</p>
+            </div>
+            
+            <div class="step-card animate delay-2">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Conecta con seguridad</h3>
+                <p class="step-description">Realiza un único pago para desbloquear el contacto y comenzar la conversación con tu match ideal.</p>
+            </div>
+            
+            <div class="step-card animate delay-3">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Comienza a generar</h3>
+                <p class="step-description">Establece los términos del acuerdo directamente con la otra parte y empieza a trabajar inmediatamente.</p>
+            </div>
+        </div>
+
+        <div class="payment-system animate">
+            <div class="payment-badge">Sistema seguro de pago</div>
+            <h3 class="step-title">Pago único por conexión exitosa</h3>
+            <p class="step-description">Solo pagas cuando encuentras tu match perfecto. Un pequeño costo por una gran oportunidad de negocio.</p>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="beneficios">
+        <div class="container">
+            <h2 class="section-title">Beneficios para todos</h2>
+            <p class="section-subtitle">Una plataforma diseñada para el éxito mutuo</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card animate">
+                    <div class="benefit-icon">💼</div>
+                    <h3 class="benefit-title">Para conductoras</h3>
+                    <p class="benefit-description">Accede a autos verificados sin compromisos a largo plazo. Maneja tus horarios y recibe el 100% de tus ganancias.</p>
+                </div>
+                
+                <div class="benefit-card animate delay-1">
+                    <div class="benefit-icon">💰</div>
+                    <h3 class="benefit-title">Sin intermediarios</h3>
+                    <p class="benefit-description">Conexión directa entre partes. Sin comisiones ocultas ni pagos recurrentes. Solo un pequeño costo por match exitoso.</p>
+                </div>
+                
+                <div class="benefit-card animate delay-2">
+                    <div class="benefit-icon">🛠️</div>
+                    <h3 class="benefit-title">Para propietarios</h3>
+                    <p class="benefit-description">Genera ingresos con tu auto sin complicaciones. Conductoras verificadas con experiencia en plataformas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration for Drivers -->
+    <section class="container registration-section" id="registro-conductoras">
+        <div class="back-button" id="backFromDriver">
+            ← Volver
+        </div>
+        <h2 class="section-title">Registro para conductoras</h2>
+        <p class="section-subtitle">Completa tu perfil y comienza a encontrar autos disponibles en tu zona</p>
+        
+        <div class="registration-grid">
+            <div class="registration-info">
+                <div class="registration-feature">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-content">
+                        <h3>Perfil verificado</h3>
+                        <p>Nuestro equipo revisa toda la información para garantizar la seguridad de todos los usuarios.</p>
+                    </div>
+                </div>
+                
+                <div class="registration-feature">
+                    <div class="feature-icon">🚗</div>
+                    <div class="feature-content">
+                        <h3>Autos disponibles</h3>
+                        <p>Accede a una variedad de vehículos que se adapten a tus necesidades y preferencias.</p>
+                    </div>
+                </div>
+                
+                <div class="registration-feature">
+                    <div class="feature-icon">💵</div>
+                    <div class="feature-content">
+                        <h3>Sin comisiones</h3>
+                        <p>Mantienes el 100% de tus ganancias. Solo pagas una pequeña tarifa por conexión exitosa.</p>
+                    </div>
+                </div>
+                
+                <div class="registration-feature">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-content">
+                        <h3>Seguridad garantizada</h3>
+                        <p>Todos los propietarios y autos son verificados para tu tranquilidad.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="registration-form">
+                <h3 class="form-title">Completa tus datos</h3>
+                <form id="driverForm">
+                    <div class="form-group">
+                        <label for="driverName">Nombre completo</label>
+                        <input type="text" id="driverName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="driverEmail">Correo electrónico</label>
+                        <input type="email" id="driverEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="driverPhone">Teléfono</label>
+                        <input type="tel" id="driverPhone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="driverCity">Ciudad</label>
+                        <select id="driverCity" required>
+                            <option value="">Selecciona tu ciudad</option>
+                            <option value="cdmx">CDMX</option>
+                            <option value="edomex">Estado de México</option>
+                            <option value="puebla">Puebla</option>
+                            <option value="queretaro">Querétaro</option>
+                            <option value="cuernavaca">Cuernavaca</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="driverExperience">Experiencia en plataformas (años)</label>
+                        <input type="number" id="driverExperience" min="0" required>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">Continuar con el registro</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration for Car Owners -->
+    <section class="container registration-section" id="registro-propietarios">
+        <div class="back-button" id="backFromOwner">
+            ← Volver
+        </div>
+        <h2 class="section-title">Registro para propietarios</h2>
+        <p class="section-subtitle">Publica tu auto y comienza a generar ingresos con conductoras verificadas</p>
+        
+        <div class="registration-grid">
+            <div class="registration-info">
+                <div class="registration-feature">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-content">
+                        <h3>Conductoras verificadas</h3>
+                        <p>Todas nuestras conductoras tienen experiencia comprobada en plataformas de movilidad.</p>
+                    </div>
+                </div>
+                
+                <div class="registration-feature">
+                    <div class="feature-icon">📅</div>
+                    <div class="feature-content">
+                        <h3>Flexibilidad total</h3>
+                        <p>Tú decides los términos del acuerdo: horarios, días y condiciones de uso.</p>
+                    </div>
+                </div>
+                
+                <div class="registration-feature">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-content">
+                        <h3>Ingresos garantizados</h3>
+                        <p>Establece el monto que deseas recibir y encuentra conductoras dispuestas a pagarlo.</p>
+                    </div>
+                </div>
+                
+                <div class="registration-feature">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-content">
+                        <h3>Protección para tu auto</h3>
+                        <p>Todas las conductoras tienen seguro y cuentan con historial de conducción responsable.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="registration-form">
+                <h3 class="form-title">Completa tus datos</h3>
+                <form id="ownerForm">
+                    <div class="form-group">
+                        <label for="ownerName">Nombre completo</label>
+                        <input type="text" id="ownerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ownerEmail">Correo electrónico</label>
+                        <input type="email" id="ownerEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ownerPhone">Teléfono</label>
+                        <input type="tel" id="ownerPhone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ownerCity">Ciudad</label>
+                        <select id="ownerCity" required>
+                            <option value="">Selecciona tu ciudad</option>
+                            <option value="cdmx">CDMX</option>
+                            <option value="edomex">Estado de México</option>
+                            <option value="puebla">Puebla</option>
+                            <option value="queretaro">Querétaro</option>
+                            <option value="cuernavaca">Cuernavaca</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="carModel">Modelo del auto</label>
+                        <input type="text" id="carModel" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="carYear">Año del auto</label>
+                        <input type="number" id="carYear" min="2000" max="2025" required>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">Continuar con el registro</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cities Section -->
+    <section class="container cities" id="ciudades">
+        <h2 class="section-title">Estamos en estas ciudades</h2>
+        <p class="section-subtitle">Conectando oportunidades en las principales zonas metropolitanas</p>
+        
+        <div class="cities-badge animate">Disponible actualmente</div>
+        <div class="cities-list animate delay-1">
+            <div class="city-pill">CDMX</div>
+            <div class="city-pill">Estado de México</div>
+            <div class="city-pill">Puebla</div>
+            <div class="city-pill">Querétaro</div>
+            <div class="city-pill">Cuernavaca</div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="container testimonials" id="testimonios">
+        <h2 class="section-title">Historias de éxito</h2>
+        <p class="section-subtitle">Lo que dicen quienes ya encontraron su match perfecto</p>
+        
+        <div class="testimonials-container" id="testimonialsContainer">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <p class="testimonial-text">JUNA me cambió la vida. Encontré un auto perfecto cerca de mi casa y en una semana ya estaba generando ingresos. Lo mejor es que la dueña y yo acordamos todo directamente, sin intermediarios.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AG</div>
+                    <div class="author-info">
+                        <div class="author-name">Ana González</div>
+                        <div class="author-role">Conductora en CDMX</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <p class="testimonial-text">Tenía dos autos que casi no usaba. Con JUNA encontré conductoras responsables que los cuidan mejor que yo. Ahora generan ingresos constantes sin que yo tenga que hacer nada.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">LM</div>
+                    <div class="author-info">
+                        <div class="author-name">Luis Martínez</div>
+                        <div class="author-role">Propietario en Querétaro</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <p class="testimonial-text">Después de meses buscando opciones, JUNA me conectó con una dueña de auto increíble. Pagué solo una vez por el match y desde entonces trabajo con total flexibilidad. Gano alrededor de $9,000 semanales.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SR</div>
+                    <div class="author-info">
+                        <div class="author-name">Sofía Ramírez</div>
+                        <div class="author-role">Conductora en Puebla</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card">
+                <p class="testimonial-text">Como propietario, lo que más valoro es la tranquilidad. JUNA verifica a todas las conductoras y me permite establecer acuerdos claros desde el inicio. Mi auto siempre está en buenas manos.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JP</div>
+                    <div class="author-info">
+                        <div class="author-name">Juan Pérez</div>
+                        <div class="author-role">Propietario en Edomex</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-nav" id="testimonialNav">
+            <div class="testimonial-dot active" data-index="0"></div>
+            <div class="testimonial-dot" data-index="1"></div>
+            <div class="testimonial-dot" data-index="2"></div>
+            <div class="testimonial-dot" data-index="3"></div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="section-title">¿Listo para encontrar tu match perfecto?</h2>
+            <p class="section-subtitle">Regístrate hoy y comienza a generar ingresos con movilidad</p>
+            <div class="cta-buttons">
+                <a href="#registro-conductoras" class="btn btn-primary animate" id="finalConducirBtn">Quiero conducir</a>
+                <a href="#registro-propietarios" class="btn btn-secondary animate" id="finalAutoBtn">Tengo un auto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div class="footer-logo">
+                    <span>🚗</span>
+                    <span>JUNA</span>
+                </div>
+                <p class="footer-description">Plataforma de conexión que facilita oportunidades de movilidad para conductoras y propietarios de autos.</p>
+            </div>
+            
+            <div>
+                <h3 class="footer-links-title">Para conductoras</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#como-funciona">Cómo funciona</a></li>
+                    <li class="footer-link"><a href="#registro-conductoras">Registro</a></li>
+                    <li class="footer-link"><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="footer-links-title">Para propietarios</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#como-funciona">Beneficios</a></li>
+                    <li class="footer-link"><a href="#registro-propietarios">Registro</a></li>
+                    <li class="footer-link"><a href="#preguntas-frecuentes">Seguridad</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="footer-links-title">Contacto</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="mailto:hola@juna.mx">hola@juna.mx</a></li>
+                    <li class="footer-link"><a href="tel:5512345678">55 1234 5678</a></li>
+                    <li class="footer-link"><a href="#">CDMX, México</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 JUNA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (navLinks && navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            mobileMenuBtn.textContent = '☰';
+                        }
+                    }
+                });
+            });
+            
+            // Animation on scroll
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.animate');
+                const windowHeight = window.innerHeight;
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementPosition < windowHeight - elementVisible) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Run once on load
+            animateOnScroll();
+            
+            // Then on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Testimonial carousel
+            const testimonialsContainer = document.getElementById('testimonialsContainer');
+            const testimonialDots = document.querySelectorAll('.testimonial-dot');
+            let currentTestimonial = 0;
+            const testimonialCount = document.querySelectorAll('.testimonial-card').length;
+            
+            function showTestimonial(index) {
+                testimonialsContainer.style.transform = `translateX(-${index * 100}%)`;
+                
+                // Update dots
+                testimonialDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                
+                currentTestimonial = index;
+            }
+            
+            // Dot navigation
+            testimonialDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    showTestimonial(index);
+                });
+            });
+            
+            // Auto-rotate testimonials
+            let testimonialInterval = setInterval(() => {
+                const nextIndex = (currentTestimonial + 1) % testimonialCount;
+                showTestimonial(nextIndex);
+            }, 5000);
+            
+            // Pause on hover
+            testimonialsContainer.addEventListener('mouseenter', () => {
+                clearInterval(testimonialInterval);
+            });
+            
+            testimonialsContainer.addEventListener('mouseleave', () => {
+                testimonialInterval = setInterval(() => {
+                    const nextIndex = (currentTestimonial + 1) % testimonialCount;
+                    showTestimonial(nextIndex);
+                }, 5000);
+            });
+            
+            // Registration sections toggle
+            const quieroConducirBtn = document.getElementById('quieroConducirBtn');
+            const tengoAutoBtn = document.getElementById('tengoAutoBtn');
+            const finalConducirBtn = document.getElementById('finalConducirBtn');
+            const finalAutoBtn = document.getElementById('finalAutoBtn');
+            const backFromDriver = document.getElementById('backFromDriver');
+            const backFromOwner = document.getElementById('backFromOwner');
+            const driverSection = document.getElementById('registro-conductoras');
+            const ownerSection = document.getElementById('registro-propietarios');
+            
+            function showDriverSection() {
+                driverSection.classList.add('active');
+                ownerSection.classList.remove('active');
+                window.scrollTo({
+                    top: driverSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+            
+            function showOwnerSection() {
+                ownerSection.classList.add('active');
+                driverSection.classList.remove('active');
+                window.scrollTo({
+                    top: ownerSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+            
+            function hideAllSections() {
+                driverSection.classList.remove('active');
+                ownerSection.classList.remove('active');
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
+            if (quieroConducirBtn) quieroConducirBtn.addEventListener('click', showDriverSection);
+            if (tengoAutoBtn) tengoAutoBtn.addEventListener('click', showOwnerSection);
+            if (finalConducirBtn) finalConducirBtn.addEventListener('click', showDriverSection);
+            if (finalAutoBtn) finalAutoBtn.addEventListener('click', showOwnerSection);
+            if (backFromDriver) backFromDriver.addEventListener('click', hideAllSections);
+            if (backFromOwner) backFromOwner.addEventListener('click', hideAllSections);
+            
+            // Form submissions
+            const driverForm = document.getElementById('driverForm');
+            const ownerForm = document.getElementById('ownerForm');
+            
+            if (driverForm) {
+                driverForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('¡Gracias por tu registro como conductora! Nos pondremos en contacto contigo en breve.');
+                    this.reset();
+                    hideAllSections();
+                });
+            }
+            
+            if (ownerForm) {
+                ownerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('¡Gracias por registrar tu auto! Nos pondremos en contacto contigo en breve.');
+                    this.reset();
+                    hideAllSections();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
